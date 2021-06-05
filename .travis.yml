@@ -9,3 +9,15 @@ before_install:
 
 script:
   - docker run -e CI=true hvissamsetty/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-1'
+  app: 'hdocker'
+  env: 'Hdocker-env'
+  bucket_name: 'elasticbeanstalk-us-east-1-292325839047'
+  bucket_path: 'hdocker'
+  on:
+    branch: master
+  access_key_id: $AWS_ACESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
